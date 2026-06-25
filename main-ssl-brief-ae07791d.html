@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>ng体育｜简明指南与访问提醒</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #fdf3e7 0%, #f9e4c8 50%, #f0d5b5 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+      color: #2e2b27;
+    }
+
+    .page-card {
+      max-width: 820px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 36px;
+      box-shadow: 0 20px 40px -12px rgba(110, 70, 40, 0.25), 0 8px 20px rgba(0,0,0,0.03);
+      padding: 2.5rem 2rem;
+      transition: all 0.2s ease;
+    }
+
+    /* 暖色点缀线 */
+    .accent-line {
+      width: 60px;
+      height: 5px;
+      background: #d99b6c;
+      border-radius: 8px;
+      margin-bottom: 1.8rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #4d2e1b;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: #7a5f48;
+      background: #f9efdf;
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      font-weight: 450;
+    }
+
+    .intro {
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      padding: 1rem 0 0.8rem 0;
+      border-bottom: 1px solid #efe5d8;
+    }
+
+    .intro strong {
+      color: #b07248;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2.2rem 0;
+    }
+
+    .highlight-item {
+      background: #fcf7f1;
+      border-radius: 24px;
+      padding: 1.2rem 1.3rem;
+      transition: background 0.15s;
+      border: 1px solid #efe2d3;
+    }
+
+    .highlight-item .emoji-badge {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .highlight-item h3 {
+      font-size: 1.1rem;
+      font-weight: 560;
+      margin: 0.15rem 0 0.3rem 0;
+      color: #4d321f;
+    }
+
+    .highlight-item p {
+      font-size: 0.95rem;
+      color: #54463a;
+      margin: 0;
+    }
+
+    .usage-note {
+      background: #f5ecdf;
+      border-radius: 28px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .usage-note h2 {
+      font-size: 1.3rem;
+      font-weight: 560;
+      color: #4d2e1b;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .usage-note ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .usage-note li {
+      padding: 0.3rem 0;
+      font-size: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+    }
+
+    .usage-note li::before {
+      content: "·";
+      font-weight: 700;
+      color: #b07248;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .reminder-box {
+      background: #fff8f0;
+      border: 1px solid #e6d5be;
+      border-radius: 30px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .reminder-box h2 {
+      font-size: 1.25rem;
+      font-weight: 550;
+      color: #4f3723;
+      margin-bottom: 0.5rem;
+    }
+
+    .reminder-box p {
+      margin: 0.5rem 0;
+      font-size: 0.98rem;
+    }
+
+    .faq-mini {
+      margin: 2.2rem 0 1rem 0;
+    }
+
+    .faq-mini details {
+      border-bottom: 1px solid #e7dccc;
+      padding: 0.8rem 0;
+    }
+
+    .faq-mini details:first-of-type {
+      border-top: 1px solid #e7dccc;
+    }
+
+    .faq-mini summary {
+      font-weight: 530;
+      color: #4e3827;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .faq-mini details p {
+      margin: 0.5rem 0 0.2rem 0;
+      color: #5b4a3b;
+      font-size: 0.95rem;
+      padding-left: 0.3rem;
+    }
+
+    .link-sentence {
+      background: #f7ede1;
+      border-radius: 60px;
+      padding: 1rem 1.8rem;
+      margin-top: 1.8rem;
+      font-size: 1.06rem;
+      color: #3a2b1f;
+      display: inline-block;
+    }
+
+    .link-sentence a {
+      color: #9f6a43;
+      text-decoration: none;
+      font-weight: 530;
+      border-bottom: 1.5px solid #dbb99b;
+      padding-bottom: 1px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .link-sentence a:hover {
+      color: #7e4f2e;
+      border-bottom-color: #8f5f3c;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      font-size: 0.85rem;
+      color: #8e7b69;
+      text-align: center;
+      border-top: 1px solid #ebdfd1;
+      padding-top: 1.8rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .page-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 28px;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .highlight-grid {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+      .usage-note,
+      .reminder-box {
+        padding: 1.2rem 1rem;
+      }
+      .link-sentence {
+        font-size: 0.98rem;
+        padding: 0.8rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      .page-card {
+        padding: 1.5rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-card">
+
+    <div class="accent-line"></div>
+
+    <h1>ng体育 · 简明使用指南</h1>
+    <div class="subhead">日常活动 · 友好提醒</div>
+
+    <div class="intro">
+      <p><strong>ng体育</strong> 是一个面向体育爱好者的日常信息与活动支持平台。无论你是想跟进赛程、查阅基础数据，还是寻找运动社区氛围，这里提供的都是一套相对完整的功能集合。下面从几个常见角度帮你快速了解它该怎么用、什么时候用、以及使用时需要注意什么。</p>
+    </div>
+
+    <!-- 亮点卡片 -->
+    <div class="highlight-grid">
+      <div class="highlight-item">
+        <span class="emoji-badge">📋</span>
+        <h3>内容结构清晰</h3>
+        <p>从赛事预告到实时结果，信息按时间线和项目分类，方便直接定位，不用来回翻找。</p>
+      </div>
+      <div class="highlight-item">
+        <span class="emoji-badge">⚙️</span>
+        <h3>轻量操作流程</h3>
+        <p>注册、浏览、收藏等核心动作都控制在三步以内，降低学习成本，尤其适合忙碌间隙使用。</p>
+      </div>
+      <div class="highlight-item">
+        <span class="emoji-badge">🌐</span>
+        <h3>多端适配体验</h3>
+        <p>手机、平板、桌面都能保持一致的布局和响应速度，不会因为设备不同而丢失关键信息。</p>
+      </div>
+      <div class="highlight-item">
+        <span class="emoji-badge">🔒</span>
+        <h3>基础隐私保护</h3>
+        <p>采用常规加密连接与数据脱敏展示，不收集多余个人信息，日常使用更安心。</p>
+      </div>
+    </div>
+
+    <!-- 使用建议 -->
+    <div class="usage-note">
+      <h2>💡 常见使用场景</h2>
+      <ul>
+        <li>下班后或午休时快速浏览当天重点赛事动态，省去筛选时间。</li>
+        <li>和朋友组队前，先在平台上确认场地规则、时间表或活动公告。</li>
+        <li>关注特定联赛或队伍，利用收藏功能订阅更新，不错过关键变动。</li>
+        <li>作为运动社群的信息集散地，分享看法或查找同好组织的线下活动。</li>
+      </ul>
+    </div>
+
+    <!-- 可信而克制的访问说明 -->
+    <div class="reminder-box">
+      <h2>📌 访问提醒</h2>
+      <p>任何平台都有其适用边界，ng体育 也不例外。建议你根据自身需求合理规划使用频率，避免过度依赖单一信息源。同时，请保护好个人账号信息，不在公共设备上保存密码，定期检查登录设备记录——这些都是保护数字生活的基本习惯。</p>
+      <p>另外，平台上部分内容由用户或第三方贡献，请保持基本的信息核实意识，对重要赛事安排以官方渠道为准。享受运动本身，比追逐每一条消息更有意义。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <details>
+        <summary>ng体育 适合完全不懂体育的新手吗？</summary>
+        <p>适合。平台界面设计偏向直观，首页有热门分类指引，并且提供基础术语解释模块。你可以从“新手推荐”板块开始摸索。</p>
+      </details>
+      <details>
+        <summary>使用前需要付费或下载额外软件吗？</summary>
+        <p>基础浏览和查询功能免费，无需下载额外软件，通过浏览器直接访问即可。部分增值服务（如深度数据包）会单独说明，可根据需要选择。</p>
+      </details>
+      <details>
+        <summary>遇到页面显示问题怎么处理？</summary>
+        <p>先尝试刷新或更换浏览器。如果仍然异常，可以检查网络环境，部分公共 Wi-Fi 可能限制动态内容加载。问题持续的话联系客服反馈即可。</p>
+      </details>
+    </div>
+
+    <!-- 唯一的链接嵌入句子中，可见文本严格等于 ng体育 -->
+    <div class="link-sentence">
+      如果你希望进一步了解平台功能或开始使用，可以直接前往 <a href="https://main-ssl-ngsports.com">ng体育</a> 自行探索。一切以实际页面为准。
+    </div>
+
+    <div class="footer-note">
+      保持好奇，理性参与 —— 让运动回归日常的快乐。
+    </div>
+
+  </div>
+</body>
+</html>
